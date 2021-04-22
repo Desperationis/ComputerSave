@@ -1,0 +1,32 @@
+Adobe Photoshop
+Fusion 360
+Arduino
+RobotC
+PROS for V5
+Atom
+Github Desktop
+Kraken
+Visual Studio
+Chrome
+Gstreamer 1.0
+Huion Tablet
+JDownloader 2 
+KeePass
+Kite
+Krita
+LightBulb 2.0
+NodeJS
+OBS
+Mp3tag
+PuTTY
+Python 3.8
+Qidi Print 3.5
+ScreenToGif
+Tiled
+Torch
+Unity
+TranslucentTB
+VLC 
+VNC Viewer
+Zoom
+7-Zip
