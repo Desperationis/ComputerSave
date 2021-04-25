@@ -9,3 +9,5 @@ pip3 install pygame pyautogui
 # JDownloader 2
 # VNC Viewer
 
+
+# Remember! checkinstall can be used to wrap source code (with a makefile) into a single .deb
