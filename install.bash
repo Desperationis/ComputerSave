@@ -1,4 +1,4 @@
-sudo apt-get install python3 python3-pip git g++ cmake vim okular youtube-dl keepass2 obs-studio xclip
+sudo apt-get install python3 python3-pip git g++ cmake vim okular youtube-dl keepass2 obs-studio xclip texlive-full
 sudo apt-get install gstreamer1.0*
 
 sudo apt-install build-essential
