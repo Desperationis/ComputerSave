@@ -1,3 +1,5 @@
+## Activating Virtualization for Legion Y720T
+
 My computer has very weird BIOS settings for virtualization. The CPU, a Ryzen 1700x, supports virtualization and the motherboard does as well.
 
 Despite this, the actual setting for virtualization is not found *at all* in the BIOS, and the reason for this is because the motherboard comes with a pre-built system, which very likely doesn't have users that frequently use virtual machines.
