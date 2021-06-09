@@ -6,6 +6,8 @@ sudo apt install build-essential python3-pip
 
 pip3 install pygame pyautogui PythonFileLibrary psscraper
 
+sudo apt-get upgrade
+
 # Misc:
 # JDownloader 2
 # VNC Viewer
