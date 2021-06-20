@@ -1,0 +1,13 @@
+Here are the instructions to enter compute mode:
+
+Enter root by typing 'su'
+
+Go to /sys/bus/pci/drivers/amdgpu and find your device (usually 0000:something)
+
+There, change power_dpm_force_performance_level from "auto" to "manual" by using echo "manual" > power_dpm_force_performance_level. This allows us to manually change to compute mode
+
+Then, write "5" to pp_power_profile_mode through echo 5 > pp_power_profile_mode; This is the ONLY way to do this, you cannot use vim. You can cat the file out to see the options.
+
+Profit
+
+
