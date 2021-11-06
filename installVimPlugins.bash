@@ -13,7 +13,7 @@ vim +PluginInstall +qall
 if [[ -d ~/.vim/bundle/YouCompleteMe ]]
 then
 	cd ~/.vim/bundle/YouCompleteMe
-	python3 install.py --clangd-completer
+	python3 install.py --all
 
 else
 	echo "ERROR: Could not detect YouCompleteMe in ~/.vim/bundle"
