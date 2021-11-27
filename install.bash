@@ -18,6 +18,9 @@ install cmake
 install cmake-curses-gui
 install curl
 install wget
+install adb
+install fastboot
+install scrcpy
 
 if ! pix --version
 then
