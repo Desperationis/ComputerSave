@@ -14,6 +14,7 @@ install python3
 install python
 install git
 install g++
+install net-tools
 install cmake
 install redshift
 install cmake-curses-gui
