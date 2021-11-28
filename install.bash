@@ -15,6 +15,7 @@ install python
 install git
 install g++
 install cmake
+install redshift
 install cmake-curses-gui
 install curl
 install wget
