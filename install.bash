@@ -62,13 +62,6 @@ then
 	sudo chmod a+rx /usr/local/bin/youtube-dl
 fi
 
-if ! google-chrome-stable --version
-then
-	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-	install ./google-chrome-stable_current_amd64.deb
-	rm google-chrome-stable_current_amd64.deb
-fi
-
 if ! type discord
 then
 	wget -O ./discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
