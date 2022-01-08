@@ -92,10 +92,3 @@ install build-essential
 install python3-pip
 
 pip3 install pygame pyautogui PythonFileLibrary psscraper
-
-# Misc:
-# JDownloader 2
-# VNC Viewer
-
-
-# Remember! checkinstall can be used to wrap source code (with a makefile) into a single .deb
