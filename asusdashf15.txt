@@ -8,4 +8,6 @@ However, like my Arch Installation, the system only used intel graphics, as seen
 
 With all of this, it does not crash. However, you may see some glitches time to time. For best results, I would recommend switching the window driver from wayland to xorg in ubuntu by editing /etc/gdm3/custom.conf
 
+In addition, for some reason, closing the lid of the laptop and opening it again 1 minute later leaves you to a black screen with a single white cursor; At this point, the system has crashed. The reason this is happening is because Ubuntu automatically suspends the entire machine, and in the case of this laptop, is unable to boot back up. Simply install gnome-tweaks, turn off suspend on lid close, and you are good to go! (Doing this will result in the expected behaviour of simply going back to where you where when you open the lid)
+
 And, that's it! With that, you should have a fully, 100% no issue Ubuntu installation. 
