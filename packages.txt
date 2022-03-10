@@ -1,0 +1,81 @@
+// This is a comment. Comments won't be searched for a group name.
+// "Group names" or "Package names" are anything that are next to a ##.
+
+// The format is as follows:
+//
+// ## Package Name
+// package1
+// package2
+// package3
+// ...
+//
+// An empty newline signals the end of that package.
+
+// The installation and removal commands for a package are named by the
+// group names "Install" and "Remove" and only have one element. There must
+// exist an instance of "$package" which is where a long list of packages 
+// will be inserted (like "gcc cmake go")
+
+## Install
+sudo apt-get install $package
+
+## Remove
+sudo apt-get remove $package
+
+## Development
+g++
+cmake
+gcc
+python3
+python3-pip
+tree
+python
+go
+git
+g++
+net-tools
+vim
+npm
+gdb
+nodejs
+libc6-dev
+libc-dev-bin
+libncurses-dev
+libsdl2-dev
+libsdl2-ttf-dev
+libsdl2-image-dev
+libssl-dev
+dos2unix
+pkg-config
+build-essential
+
+## Online Tools
+curl
+wget
+
+## Screen Dim
+redshift
+
+## Android Tools
+scrcpy
+adb
+fastboot
+
+## Applications
+okular
+keepass2
+obs-studio
+xclip
+gparted
+vlc
+clementine
+
+## LaTeX
+texlive-full
+
+## Gstreamer
+gstreamer1.0*
+libgstreamer-plugins-base1.0-dev
+
+
+
