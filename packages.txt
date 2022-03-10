@@ -20,6 +20,9 @@
 // Pro tip: If you use $(command > /dev/null 2>&1), you can run whatever commands
 // you want should you need a manual install.
 
+// Bug: The very last line of this document is cut off. Be sure to put an extra
+// newline there.
+
 ## Install
 sudo apt-get install -y $package
 
@@ -90,3 +93,20 @@ libgstreamer-plugins-base1.0-dev
 
 ## Python Packages (One-way)
 $(pip3 install pygame pyautogui PythonFileLibrary psscraper > /dev/null 2>/dev/null)
+
+## Anki (One-way)
+$($(
+if  anki -v;
+then
+    wget -O anki.tar.bz2 https://github.com/ankitects/anki/releases/download/2.1.49/anki-2.1.49-linux.tar.bz2;
+    tar -xf anki.tar.bz2;
+    cd anki-2.1.49-linux/;
+    chmod +x ./install.sh;
+    sudo ./install.sh;
+	cd ..;
+    rm anki.tar.bz2;
+    rm -rf anki-2.1.49-linux;
+fi
+) > /dev/null 2>/dev/null)
+
+
