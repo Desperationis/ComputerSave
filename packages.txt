@@ -21,7 +21,7 @@
 // you want should you need a manual install.
 
 ## Install
-sudo apt-get install $package
+sudo apt-get install -y $package
 
 ## Remove
 sudo apt-get remove $package
