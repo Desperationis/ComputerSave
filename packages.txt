@@ -12,9 +12,13 @@
 // An empty newline signals the end of that package.
 
 // The installation and removal commands for a package are named by the
-// group names "Install" and "Remove" and only have one element. There must
-// exist an instance of "$package" which is where a long list of packages 
-// will be inserted (like "gcc cmake go")
+// group names "Install" and "Remove" and only have one element. Any group,
+// regardness of how many words it has, will not be shown if it has these words.
+// There must be exist an instance of "$package" which is where a long list of
+// packages will be inserted (like "gcc cmake go").
+
+// Pro tip: If you use $(command > /dev/null 2>&1), you can run whatever commands
+// you want should you need a manual install.
 
 ## Install
 sudo apt-get install $package
@@ -22,7 +26,7 @@ sudo apt-get install $package
 ## Remove
 sudo apt-get remove $package
 
-## Development
+## Programming Tools / Libraries
 g++
 cmake
 gcc
@@ -48,13 +52,8 @@ libssl-dev
 dos2unix
 pkg-config
 build-essential
-
-## Online Tools
 curl
 wget
-
-## Screen Dim
-redshift
 
 ## Android Tools
 scrcpy
@@ -62,6 +61,10 @@ adb
 fastboot
 
 ## Applications
+$( if ! pix -v > /dev/null 2>/dev/null; then 
+sudo add-apt-repository -y ppa:savoury1/xapps > /dev/null 2>/dev/null; fi
+)
+redshift
 okular
 keepass2
 obs-studio
@@ -69,13 +72,18 @@ xclip
 gparted
 vlc
 clementine
+discord
+pix
 
 ## LaTeX
 texlive-full
 
-## Gstreamer
+## youtube-dl (Unsafe; One-way)
+$(
+sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl > /dev/null 2>&1
+)
+
+## Gstreamer (be careful)
 gstreamer1.0*
 libgstreamer-plugins-base1.0-dev
-
-
-
