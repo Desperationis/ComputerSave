@@ -95,9 +95,9 @@ def GetUserInput(numOptions : int) -> [str, int]:
 
         print("That is not a number.")
 
-if not IsRoot():
-    print("Please run this as root.")
-    quit()
+#if not IsRoot():
+#    print("Please run this as root.")
+#    quit()
 
 
 fileReader = FileReader("packages.txt")

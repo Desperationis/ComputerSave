@@ -58,6 +58,14 @@ curl
 wget
 gnupg
 lsb-release
+fish
+
+## Fish Plugins (One way; NO sudo)
+$($(
+if fish -v; then 
+fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher; fisher install edc/bass";
+fi
+)> /dev/null 2>/dev/null)
 
 ## Android Tools
 scrcpy
