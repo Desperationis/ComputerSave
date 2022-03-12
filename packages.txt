@@ -97,7 +97,7 @@ sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/you
 sudo chmod a+rx /usr/local/bin/youtube-dl > /dev/null 2>&1
 )
 
-## Gstreamer (be careful)
+## Gstreamer
 gstreamer1.0*
 libgstreamer-plugins-base1.0-dev
 
@@ -132,5 +132,12 @@ fi
 ) > /dev/null 2>/dev/null)
 ros-galactic-desktop
 
+## Proton VPN (Sudo)
+$($(
+wget https://protonvpn.com/download/protonvpn-stable-release_1.0.1-1_all.deb -O /tmp/proton.deb;
+sudo apt-get install /tmp/proton.deb;
+sudo apt-get update;
+)>/dev/null 2>/dev/null)
+protonvpn
 
 // Do not delete this comment
