@@ -58,6 +58,7 @@ curl
 wget
 gnupg
 lsb-release
+ffmpeg
 fish
 
 ## Fish Plugins (One way; NO sudo)
