@@ -131,6 +131,7 @@ sudo apt update;
 fi
 ) > /dev/null 2>/dev/null)
 ros-galactic-desktop
+python3-colcon-common-extensions
 
 ## Proton VPN (Sudo)
 $($(
