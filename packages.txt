@@ -132,6 +132,7 @@ fi
 ) > /dev/null 2>/dev/null)
 ros-galactic-desktop
 python3-colcon-common-extensions
+python3-rosdep2
 
 ## Proton VPN (Sudo)
 $($(
