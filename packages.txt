@@ -80,6 +80,7 @@ vlc
 clementine
 discord
 pix
+peek
 
 ## LaTeX
 texlive-full
