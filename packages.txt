@@ -39,6 +39,7 @@ tree
 python
 git
 g++
+zip
 net-tools
 vim
 npm
