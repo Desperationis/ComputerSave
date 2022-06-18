@@ -1,5 +1,0 @@
-Here are a list of extra software that would take time to install:
-
-OpenRazer
-RazerGenie (Github)
-
