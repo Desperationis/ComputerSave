@@ -40,6 +40,8 @@ python
 git
 g++
 zip
+gzip
+zstd 
 net-tools
 vim
 npm
@@ -55,6 +57,7 @@ libssl-dev
 dos2unix
 pkg-config
 build-essential
+checkinstall
 curl
 wget
 gnupg
@@ -118,40 +121,9 @@ fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/
 fi
 )> /dev/null 2>/dev/null)
 
-## youtube-dl (One Way)
-$(
-sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-sudo chmod a+rx /usr/local/bin/youtube-dl > /dev/null 2>&1
-)
-
 ## Gstreamer (One Way)
 gstreamer1.0*
 libgstreamer-plugins-base1.0-dev
 
 ## Python Packages (One Way)
 $(pip3 install pygame pyautogui PythonFileLibrary psscraper > /dev/null 2>/dev/null)
-
-## Anki (One Way)
-$($(
-if  anki -v;
-then
-    wget -O anki.tar.bz2 https://github.com/ankitects/anki/releases/download/2.1.49/anki-2.1.49-linux.tar.bz2;
-    tar -xf anki.tar.bz2;
-    cd anki-2.1.49-linux/;
-    chmod +x ./install.sh;
-    sudo ./install.sh;
-	cd ..;
-    rm anki.tar.bz2;
-    rm -rf anki-2.1.49-linux;
-fi
-) > /dev/null 2>/dev/null)
-
-## Proton VPN (One Way; Sudo)
-$($(
-wget https://protonvpn.com/download/protonvpn-stable-release_1.0.1-1_all.deb -O /tmp/proton.deb;
-sudo apt-get install /tmp/proton.deb;
-sudo apt-get update;
-)>/dev/null 2>/dev/null)
-protonvpn
-
-// Do not delete this comment
