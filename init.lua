@@ -11,6 +11,7 @@ require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
 	use 'preservim/nerdtree'
 	use 'tpope/vim-fugitive'
+	use 'williamboman/nvim-lsp-installer'
 	use 'neovim/nvim-lspconfig'
 	use 'ms-jpq/coq_nvim'
 	use 'lewis6991/gitsigns.nvim'
@@ -57,5 +58,6 @@ require('gitsigns').setup{
   end
 }
 
+require("nvim-lsp-installer").setup{}
 require'lspconfig'.clangd.setup{}
 require'lspconfig'.pyright.setup{}
