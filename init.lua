@@ -61,3 +61,4 @@ require('gitsigns').setup{
 require("nvim-lsp-installer").setup{}
 require'lspconfig'.clangd.setup{}
 require'lspconfig'.pyright.setup{}
+require'lspconfig'.bashls.setup{}
