@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! [[ which nvim ]] 
+if ! which nvim > /dev/null
 then
 	echo "Error: nvim not found."
 	exit 1
@@ -18,3 +18,5 @@ if ! [[ -d  ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]
 then
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 fi
+
+nvim +PackerCompile +PackerInstall
