@@ -1,7 +1,7 @@
-from PythonFileLibrary import *
+from PythonFileLibrary import FileReader
 import os
 
-def GetPackages(fileReader, groupName : str) -> [str]:
+def GetPackages(fileReader, groupName : str) -> list[str]:
     """
         Get all the packages that are listed under a "group", which is the name
         right next to ##.
@@ -27,7 +27,7 @@ def GetPackages(fileReader, groupName : str) -> [str]:
 
     return content
 
-def GetGroups(fileReader) -> [str]:
+def GetGroups(fileReader) -> list[str]:
     """
         Returns all the names of the groups ("Install" and "Remove" are not
         included). 
@@ -54,26 +54,25 @@ def IsRoot() -> bool:
     # Root is always UID 0
     return os.geteuid() == 0
 
-def RunPackCommand(command : str, packages : [str]):
+def RunPackCommand(command : str, packages : list[str]):
     packageString = " ".join(packages)
     os.system(command.replace("$package", packageString))
 
-def PrintOptions(options : [str], selected : [bool]):
+def PrintOptions(options : list[str], selected : list[bool]):
     """
         Prints out the options in "1 Option" format. If the corresponding
         index in selected is true, it shows up as "(1) Option"
     """
 
     print("Please select a package number. End or start with ! to unselect.") 
-    groups = GetGroups(fileReader)
-    for i, group in enumerate(groups):
+    for i, group in enumerate(options):
         if selected[i]:
             print("(" + str(i + 1) + ") " + group)
         else:
             print(str(i + 1) + " " + group)
 
 
-def GetUserInput(numOptions : int) -> [str, int]:
+def GetUserInput(numOptions : int) -> (str, int):
     """
         Gets an integer from the user, (1, numOptions],
         or "c" or "q". Returns [original message, int(message)].
