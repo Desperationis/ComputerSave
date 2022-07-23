@@ -1,6 +1,20 @@
 # Make sure you don't must personal info in here lmao
 
-git config --global core.editor nvim
+if which nvim > /dev/null
+then
+	git config --global core.editor nvim
+fi
+
+if which vim > /dev/null
+then
+	git config --global core.editor vim
+fi
+
+if which nano > /dev/null
+then
+	git config --global core.editor nano
+fi
+
 git config --global user.name "Desperationis"
 git config --global user.email "smarttdiego@gmail.com"
 
