@@ -92,7 +92,24 @@ def GetPackages(option : str) -> list[str]:
     return config["packages"][option]
 
 
+def GetScripts() -> list[str]:
+    """
+        Returns the relative path of all scripts in packages.d/
+    """
+    return [os.path.join("packages.d/",f) for f in os.listdir("packages.d/") ]
+
+def GetScriptNames(scripts : list[str]) -> list[str]:
+    names = []
+    for script in scripts:
+        name = os.path.basename(script).split(".")[0]
+        names.append(name)
+
+    return names
+
+
+scriptNames = GetScriptNames(GetScripts())
 categories = [i for i in config["packages"]]
+categories.extend(scriptNames)
 selected = []
 
 while True:
@@ -103,16 +120,18 @@ while True:
         break
 
     if userInput.isAccept():
-        choice = input("Install or remove packages? [i/r] ")
+        choice = input("Install or remove? [i/r] ")
         command = REMOVE_COMMAND if choice == "r" else INSTALL_COMMAND
 
         confirm = input("Are you sure? [y/n] ")
         if confirm == "y":
             for option in selected:
-                print(option)
-                packages = GetPackages(option)
-                fullCommand = CraftPackCommand(command, packages)
-                RunCommand(fullCommand)
+                if option in scriptNames:
+                    RunCommand("bash packages.d/%s.bash" % option)
+                else:
+                    packages = GetPackages(option)
+                    fullCommand = CraftPackCommand(command, packages)
+                    RunCommand(fullCommand)
             break
 
     if userInput.isNumber():
@@ -123,6 +142,7 @@ while True:
             selected.remove(option)
         else:
             print("You selected \"%s\".\n" % option)
-            selected.append(option)
+            if option not in selected:
+                selected.append(option)
 
 
