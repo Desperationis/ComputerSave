@@ -9,7 +9,7 @@ fi
 
 if ! [[ -e ~/.config/nvim/init.lua ]]
 then
-	mkdir -p ~/.config/nvim
+	mkdir -p ~/.config/nvim/
 	cp init.lua ~/.config/nvim/
 fi
 
