@@ -63,4 +63,7 @@ packages:
   hacking:
     - nmap
     - binwalk
+  
+  fonts: 
+    - ttf-mscorefonts-installer
 
