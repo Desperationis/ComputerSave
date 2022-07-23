@@ -33,6 +33,7 @@ then
 fi
 
 echo "NOTE: Do you have the latest version of nodejs? Make sure you ran \"n stable\" and restarted the tty."
+read ans
 npm install -g pyright
 npm install -g bash-language-server
 
