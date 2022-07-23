@@ -32,7 +32,7 @@ then
 	npm install n -g
 fi
 
-echo "NOTE: Do you have the latest version of nodejs? Make sure you ran \"n stable\" and restarted the tty."
+echo "NOTE: Do you have the latest version of nodejs? Make sure you ran \"n stable\" (already installed) and restarted the tty."
 read ans
 npm install -g pyright
 npm install -g bash-language-server
@@ -48,3 +48,4 @@ fi
 npm +"LspInstall clangd"
 
 sudo apt-get install python3-venv
+nvim +COQdeps
