@@ -52,20 +52,11 @@ function gitsigns()
 	end
 end
 
-function lspinstaller()
-	if packer_plugins['nvim-lsp-installer'] then
-		require("nvim-lsp-installer").setup{}
-	end
-end
-
-function lsp()
-	if packer_plugins['nvim-lspconfig'] then
-		require'lspconfig'.clangd.setup{}
-		require'lspconfig'.pyright.setup{}
-		require'lspconfig'.bashls.setup{}
-	end
-
-	lspinstaller()
+function setup()
+	require("nvim-lsp-installer").setup{}
+	require'lspconfig'.clangd.setup{}
+	require'lspconfig'.pyright.setup{}
+	require'lspconfig'.bashls.setup{}
 end
 
 
@@ -74,8 +65,9 @@ require('packer').startup(function()
 	use 'preservim/nerdtree'
 	use 'tpope/vim-fugitive'
 	use 'williamboman/nvim-lsp-installer'
-	use { 'neovim/nvim-lspconfig', config = lsp }
+	use 'neovim/nvim-lspconfig'
 	use 'ms-jpq/coq_nvim'
-	use { 'lewis6991/gitsigns.nvim', config = gitsigns }
+	use 'lewis6991/gitsigns.nvim'
 end)
 
+pcall(setup)
