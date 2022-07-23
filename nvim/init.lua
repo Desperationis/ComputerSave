@@ -64,6 +64,8 @@ function lsp()
 		require'lspconfig'.pyright.setup{}
 		require'lspconfig'.bashls.setup{}
 	end
+
+	lspinstaller()
 end
 
 
@@ -71,7 +73,7 @@ require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
 	use 'preservim/nerdtree'
 	use 'tpope/vim-fugitive'
-	use { 'williamboman/nvim-lsp-installer', config = lspinstaller }
+	use 'williamboman/nvim-lsp-installer'
 	use { 'neovim/nvim-lspconfig', config = lsp }
 	use 'ms-jpq/coq_nvim'
 	use { 'lewis6991/gitsigns.nvim', config = gitsigns }
