@@ -52,7 +52,7 @@ function gitsigns()
 	end
 end
 
-function setup()
+function lsp()
 	require("nvim-lsp-installer").setup{}
 	require'lspconfig'.clangd.setup{}
 	require'lspconfig'.pyright.setup{}
@@ -70,4 +70,5 @@ require('packer').startup(function()
 	use 'lewis6991/gitsigns.nvim'
 end)
 
-pcall(setup)
+pcall(gitsigns)
+pcall(lsp)
