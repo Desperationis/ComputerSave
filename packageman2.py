@@ -106,6 +106,10 @@ def GetScriptNames(scripts : list[str]) -> list[str]:
 
     return names
 
+def SetEnv(variable : str, value : str):
+    os.environ[variable] = value
+
+
 
 scriptNames = GetScriptNames(GetScripts())
 categories = [i for i in config["packages"]]
@@ -127,6 +131,10 @@ while True:
         if confirm == "y":
             for option in selected:
                 if option in scriptNames:
+                    SetEnv("REMOVE", "0")
+                    if choice == "r":
+                        SetEnv("REMOVE", "1")
+
                     RunCommand("bash packages.d/%s.bash" % option)
                 else:
                     packages = GetPackages(option)
