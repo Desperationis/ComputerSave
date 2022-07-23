@@ -1,7 +1,7 @@
 import yaml
 import os
 
-packageFile = open("config.yaml", "r")
+packageFile = open("packages.yaml", "r")
 lines = "".join([line for line in packageFile])
 config = yaml.load(lines, Loader=yaml.Loader)
 
@@ -109,9 +109,10 @@ while True:
         confirm = input("Are you sure? [y/n] ")
         if confirm == "y":
             for option in selected:
+                print(option)
                 packages = GetPackages(option)
-                command = CraftPackCommand(command, packages)
-                RunCommand(command)
+                fullCommand = CraftPackCommand(command, packages)
+                RunCommand(fullCommand)
             break
 
     if userInput.isNumber():
