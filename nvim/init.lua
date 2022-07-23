@@ -7,12 +7,8 @@ set.linebreak = true
 set.backspace = "indent,eol,start"
 set.guicursor="n-v-c-sm:ver25,i-ci-ve:ver25,r-cr-o:hor20"
 
-function isLoaded(plugin)
-	return packer_plugins[plugin] and packer_plugins[plugin]
-end
-
-
 function gitsigns()
+	if packer_plugins['gitsigns'] then
 	require('gitsigns').setup{
 	  on_attach = function(bufnr)
 		local gs = package.loaded.gitsigns
@@ -53,13 +49,16 @@ function gitsigns()
 		map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 	  end
 	}
+	end
 end
 
 function lsp()
+	if packer_plugins['nvim-lspconfig'] then
 	require("nvim-lsp-installer").setup{}
 	require'lspconfig'.clangd.setup{}
 	require'lspconfig'.pyright.setup{}
 	require'lspconfig'.bashls.setup{}
+	end
 end
 
 
