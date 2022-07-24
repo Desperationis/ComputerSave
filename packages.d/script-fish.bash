@@ -1,15 +1,25 @@
 #!/bin/bash
 
-if sudo apt-add-repository ppa:fish-shell/release-3
+# Install
+if [ $REMOVE -eq 0 ] 
 then
-	sudo apt-get update
-	sudo apt-get install fish
+	if sudo apt-add-repository ppa:fish-shell/release-3
+	then
+		sudo apt-get update
+		sudo apt-get install fish
 
+	fi
+
+	# Install plugins. `fisher` only exists inside of a fish shell
+	if ! which fisher
+	then
+		fish -c "curl -sL https://git.io/fisher | source; fisher install jorgebucaran/fisher; fisher install edc/bass"
+	fi
 fi
 
-# Install plugins
-if ! which fisher
+if [ $REMOVE -eq 1 ]
 then
-	fish -c "curl -sL https://git.io/fisher | source; fisher install jorgebucaran/fisher; fisher install edc/bass"
+	sudo apt-add-repository -r ppa:fish-shell/release-3
+	fish -c "fisher remove edc/bass; fisher remove jorgebucaran/fisher"
+	sudo apt-get remove --purge fish
 fi
-
