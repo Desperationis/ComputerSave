@@ -4,6 +4,10 @@ install: sudo apt-get install -y {package}
 remove: sudo apt-get remove {package}
 
 packages:
+  core:
+    - sudo
+    - software-properties-common
+
   programming:
     - g++
     - cmake
@@ -31,7 +35,6 @@ packages:
     - gnupg
     - lsb-release
     - ffmpeg
-    - fish
 
   programming-libs:
     - libc6-dev
