@@ -1,5 +1,11 @@
-import yaml
 import os
+import sys
+try:
+    import yaml
+except ModuleNotFoundError:
+    print("Please install PyYaml via \"pip3 install PyYaml\"")
+    sys.exit(1)
+
 
 packageFile = open("packages.yaml", "r")
 lines = "".join([line for line in packageFile])
