@@ -32,7 +32,7 @@ then
 	npm install n -g
 fi
 
-echo "NOTE: Do you have the latest version of nodejs? Make sure you ran \"n stable\" (already installed) and restarted the tty."
+echo -e "\033[0;31mNOTE: Do you have the latest version of nodejs? Make sure you ran \"n stable\" (already installed) and restarted the tty.\033[0;31m"
 read ans
 npm install -g pyright
 npm install -g bash-language-server
