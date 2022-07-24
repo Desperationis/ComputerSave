@@ -20,6 +20,7 @@ then
 	then
 		echo -e "\033[0;31mERROR: fish was not installed; cannot install plugins. \033[0m"
 		read ans
+		exit 1
 	fi
 fi
 
