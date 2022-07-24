@@ -3,14 +3,10 @@
 if which nvim > /dev/null
 then
 	git config --global core.editor nvim
-fi
-
-if which vim > /dev/null
+elif which vim > /dev/null
 then
 	git config --global core.editor vim
-fi
-
-if which nano > /dev/null
+elif which nano > /dev/null
 then
 	git config --global core.editor nano
 fi
