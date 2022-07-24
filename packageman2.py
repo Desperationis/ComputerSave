@@ -36,10 +36,13 @@ class UserChoice:
         return self._userInput.lower() == "q"
 
 
-def PrintOptions(options : list[str], selected : list[bool]):
+def PrintOptions(options, selected):
     """
         Prints out the options in "1 Option" format. If any of the elements in
-        options are found in selected, it will show as "(1) Option"
+        options are found in selected, it will show as "(1) Option".
+
+        options: List of strings
+        selected: List of strings
     """
 
     print("Please select a package number. End or start with ! to unselect.") 
@@ -79,7 +82,7 @@ def IsRoot() -> bool:
     # Root is always UID 0
     return os.geteuid() == 0
 
-def CraftPackCommand(command : str, args : list[str]) -> str:
+def CraftPackCommand(command, args) -> str:
     """
         command args...
 
@@ -94,17 +97,27 @@ def CraftPackCommand(command : str, args : list[str]) -> str:
 def RunCommand(command : str):
     os.system(command)
 
-def GetPackages(option : str) -> list[str]:
+def GetPackages(option : str):
+    """
+        Get a specific list of packages from the config file given a category
+        name.
+    """
     return config["packages"][option]
 
 
-def GetScripts() -> list[str]:
+def GetScripts():
     """
-        Returns the relative path of all scripts in packages.d/
+        Returns a list of strings that are the relative paths of all scripts in
+        packages.d/
     """
     return [os.path.join("packages.d/",f) for f in os.listdir("packages.d/") ]
 
-def GetScriptNames(scripts : list[str]) -> list[str]:
+def GetScriptNames(scripts):
+    """
+        Given a list of strings of path names, return a list that only contains
+        the name of the file without extensions.
+    """
+
     names = []
     for script in scripts:
         name = os.path.basename(script).split(".")[0]
