@@ -10,13 +10,16 @@ then
 	then
 		sudo apt-get update
 		sudo apt-get install fish
-
 	fi
 
 	# Install plugins. `fisher` only exists inside of a fish shell
-	if ! which fisher
+	if ! which fisher && which fish
 	then
 		fish -c "curl -sL https://git.io/fisher | source; fisher install jorgebucaran/fisher; fisher install edc/bass"
+	else if ! which fish
+	then
+		echo -e "\033[0;31mERROR: fish was not installed; cannot install plugins. \033[0m"
+		read ans
 	fi
 fi
 
