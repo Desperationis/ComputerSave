@@ -19,5 +19,5 @@ fi
 
 if [ $REMOVE -eq 1 ]
 then
-	pip3 remove ${packages[@]}
+	pip3 uninstall ${packages[@]}
 fi
