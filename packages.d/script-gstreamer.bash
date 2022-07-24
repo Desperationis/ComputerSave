@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Packages from
+# https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c
+# and personal experience
+
 packages=(
 	gstreamer1.0-plugins-base
 	gstreamer1.0-plugins-good

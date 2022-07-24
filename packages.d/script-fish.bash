@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# fish install from https://github.com/fish-shell/fish-shell
+# fisher install from https://github.com/jorgebucaran/fisher
+
 # Install
 if [ $REMOVE -eq 0 ] 
 then
