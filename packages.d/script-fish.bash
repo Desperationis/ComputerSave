@@ -16,7 +16,8 @@ then
 	if ! which fisher && which fish
 	then
 		fish -c "curl -sL https://git.io/fisher | source; fisher install jorgebucaran/fisher; fisher install edc/bass"
-	else if ! which fish
+	elif ! which fish
+	then
 		echo -e "\033[0;31mERROR: fish was not installed; cannot install plugins. \033[0m"
 		read ans
 	fi
