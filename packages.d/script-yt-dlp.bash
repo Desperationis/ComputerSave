@@ -5,10 +5,10 @@
 # Install
 if [ $REMOVE -eq 0 ] 
 then
-	pip3 install yt-dlp
+	sudo pip3 install yt-dlp
 fi
 
 if [ $REMOVE -eq 1 ]
 then
-	pip3 uninstall yt-dlp
+	sudo pip3 uninstall yt-dlp
 fi
