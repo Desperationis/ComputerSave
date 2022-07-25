@@ -27,15 +27,15 @@ then
 	exit 1
 fi
 
-if ! which n 
+if ! which n > /dev/null
 then
-	npm install n -g
+	sudo npm install n -g
 fi
 
-echo -e "\033[0;31mNOTE: Do you have the latest version of nodejs? Make sure you ran \"n stable\" (already installed) and restarted the tty.\033[0;31m"
+echo -e "\033[0;31mNOTE: Do you have the latest version of nodejs? Make sure you ran \"sudo n stable\" (already installed) and restarted the tty.\033[0;31m"
 read ans
-npm install -g pyright
-npm install -g bash-language-server
+sudo npm install -g pyright
+sudo npm install -g bash-language-server
 
 if ! sudo apt-get install clangd-12
 then
@@ -45,7 +45,7 @@ then
 	fi
 fi
 
-npm +"LspInstall clangd"
+nvim +"LspInstall clangd"
 
 sudo apt-get install python3-venv
 nvim +COQdeps
