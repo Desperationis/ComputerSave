@@ -33,9 +33,11 @@ require('packer').startup(function()
 	  }
 
 	use 'preservim/nerdtree'
-	use 'tpope/vim-fugitive'
-	use 'lewis6991/gitsigns.nvim'
-	use { "catppuccin/nvim", as = "catppuccin" }
+
+	use 'tpope/vim-fugitive' -- git
+	use 'lewis6991/gitsigns.nvim' -- Visualize git changes on the side
+
+	use { "catppuccin/nvim", as = "catppuccin" } -- Colorscheme
 
 	if is_bootstrap then
 		require('packer').sync()
@@ -64,7 +66,6 @@ vim.opt.guicursor="n-v-c-sm:ver25,i-ci-ve:ver25,r-cr-o:hor20"
 
 vim.o.mouse = ""
 vim.wo.number = true
-vim.cmd [[ colorscheme catppuccin ]]
 
 -- vim.o.updatetime = 250 -- This is how many ms it takes of inactivity to write to swap file
 vim.wo.signcolumn = "yes"
@@ -93,8 +94,17 @@ require("catppuccin").setup({
         --percentage = 0.15,
         percentage = 0.5,
     },
-	term_colors=true
+	term_colors=true,
+	integrations = {
+		cmp = true,
+		gitsigns = true,
+		--nvimtree = true,
+		--telescrope = true,
+		fidget = true,
+		mason = true,
+	}
 })
+vim.cmd [[ colorscheme catppuccin ]]
 
 require('gitsigns').setup{
   on_attach = function(bufnr)
@@ -154,7 +164,17 @@ local servers = {
    clangd = {},
    pyright = {},
    sumneko_lua = {},
-   bashls = {}
+   bashls = {},
+   arduino_language_server = {},
+   asm_lsp = {},
+   cmake = {},
+   cssls = {},
+   html = {},
+   dockerls = {},
+   jdtls = {},
+   jsonls = {},
+   quick_lint_js = {},
+   marksman = {}
 }
 
 require("mason").setup()
@@ -175,7 +195,11 @@ mason_lspconfig.setup_handlers {
 }
 
 -- Turn on lsp status information
-require('fidget').setup()
+require('fidget').setup({
+	window = { -- This is for catppuccin
+		blend = 0,
+	},
+})
 
 
 
