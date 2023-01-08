@@ -137,6 +137,9 @@ require('gitsigns').setup{
   end
 }
 
+-- Configure sumneko_lua to have nvim lua stuff
+require("neodev").setup()
+
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -170,9 +173,6 @@ mason_lspconfig.setup_handlers {
     require('lspconfig')[server_name].setup{}
   end,
 }
-
--- Configure sumneko_lua to have nvim lua stuff
-require("neodev").setup()
 
 -- Turn on lsp status information
 require('fidget').setup()
