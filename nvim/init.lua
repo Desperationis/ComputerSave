@@ -94,10 +94,28 @@ require("catppuccin").setup({
 	term_colors=true
 })
 
+
+if is_bootstrap then
+  print '=================================='
+  print '    Plugins are being installed'
+  print '    Wait until Packer completes,'
+  print '       then restart nvim'
+  print '=================================='
+  return
+end
+
 vim.o.mouse = ""
 vim.wo.number = true
 vim.cmd [[ colorscheme catppuccin ]]
 
+
+-- Automatically source and re-compile packer whenever you save this init.lua
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
+  group = packer_group,
+  pattern = vim.fn.expand '$MYVIMRC',
+})
 
 pcall(gitsigns)
 pcall(lsp)
