@@ -66,7 +66,23 @@ require('packer').startup(function()
 	use 'neovim/nvim-lspconfig'
 	use 'ms-jpq/coq_nvim'
 	use 'lewis6991/gitsigns.nvim'
+	use { "catppuccin/nvim", as = "catppuccin" }
 end)
+
+require("catppuccin").setup({
+	dim_inactive = {
+        enabled = true,
+        shade = "dark",
+        --percentage = 0.15,
+        percentage = 0.5,
+    },
+	term_colors=true
+})
+
+vim.o.mouse = ""
+vim.wo.number = true
+vim.cmd [[ colorscheme catppuccin ]]
+
 
 pcall(gitsigns)
 pcall(lsp)
