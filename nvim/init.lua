@@ -11,11 +11,29 @@ end
 
 require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
+
+	use { -- LSP Configuration & Plugins
+		'neovim/nvim-lspconfig',
+		requires = {
+		  -- Automatically install LSPs to stdpath for neovim
+		  'williamboman/mason.nvim',
+		  'williamboman/mason-lspconfig.nvim',
+
+		  -- Useful status updates for LSP
+		  'j-hui/fidget.nvim',
+
+		  -- Additional lua configuration, makes nvim stuff amazing
+		  'folke/neodev.nvim',
+		},
+	  }
+
+	use { -- Autocompletion
+		'hrsh7th/nvim-cmp',
+		requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+	  }
+
 	use 'preservim/nerdtree'
 	use 'tpope/vim-fugitive'
-	use 'williamboman/nvim-lsp-installer'
-	use 'neovim/nvim-lspconfig'
-	use 'ms-jpq/coq_nvim'
 	use 'lewis6991/gitsigns.nvim'
 	use { "catppuccin/nvim", as = "catppuccin" }
 
@@ -47,6 +65,12 @@ vim.opt.guicursor="n-v-c-sm:ver25,i-ci-ve:ver25,r-cr-o:hor20"
 vim.o.mouse = ""
 vim.wo.number = true
 vim.cmd [[ colorscheme catppuccin ]]
+
+-- vim.o.updatetime = 250 -- This is how many ms it takes of inactivity to write to swap file
+vim.wo.signcolumn = "yes"
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
 
 
 -- Automatically source and re-compile packer whenever you save this init.lua
@@ -113,8 +137,95 @@ require('gitsigns').setup{
   end
 }
 
--- Configure LSP
-require("nvim-lsp-installer").setup{}
-require'lspconfig'.clangd.setup{}
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.bashls.setup{}
+require("neodev").setup()
+
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+-- Enable the following language servers
+--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+--
+--  Add any additional override configuration in the following tables. They will be passed to
+--  the `settings` field of the server config. You must look up that documentation yourself.
+local servers = {
+   clangd = {},
+   pyright = {},
+   -- TODO: bashls
+
+  sumneko_lua = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+    },
+  },
+}
+
+require("mason").setup()
+
+
+-- Ensure the servers above are installed
+local mason_lspconfig = require 'mason-lspconfig'
+
+mason_lspconfig.setup {
+  ensure_installed = vim.tbl_keys(servers),
+}
+
+mason_lspconfig.setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = servers[server_name],
+    }
+  end,
+}
+
+
+-- Turn on lsp status information
+require('fidget').setup()
+
+
+
+-- nvim-cmp setup
+local cmp = require 'cmp'
+local luasnip = require 'luasnip'
+
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
+}
