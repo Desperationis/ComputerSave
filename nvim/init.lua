@@ -151,7 +151,8 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local servers = {
    clangd = {},
    pyright = {},
-   -- TODO: bashls
+   sumneko_lua = {},
+   bashls = {}
 }
 
 require("mason").setup()
@@ -164,19 +165,12 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
---[[mason_lspconfig.setup_handlers {
+-- Auto setup all LSP's whenever Mason installs a package
+mason_lspconfig.setup_handlers {
   function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-    }
+    require('lspconfig')[server_name].setup{}
   end,
-}--]]
-
--- For some reason, using lspconfig manually works way better
-require("lspconfig").pyright.setup{}
-require("lspconfig").clangd.setup{}
+}
 
 
 -- Turn on lsp status information
