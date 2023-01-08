@@ -152,13 +152,6 @@ local servers = {
    clangd = {},
    pyright = {},
    -- TODO: bashls
-
-  sumneko_lua = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
 }
 
 require("mason").setup()
@@ -171,7 +164,7 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
-mason_lspconfig.setup_handlers {
+--[[mason_lspconfig.setup_handlers {
   function(server_name)
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
@@ -179,7 +172,10 @@ mason_lspconfig.setup_handlers {
       settings = servers[server_name],
     }
   end,
-}
+}--]]
+
+require("lspconfig").pyright.setup{}
+require("lspconfig").clangd.setup{}
 
 
 -- Turn on lsp status information
