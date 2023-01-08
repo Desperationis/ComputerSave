@@ -33,6 +33,7 @@ require('packer').startup(function()
 	  }
 
 	use 'nvim-lualine/lualine.nvim'
+	use 'lukas-reineke/indent-blankline.nvim'
 
 	use 'preservim/nerdtree'
 
@@ -108,6 +109,11 @@ require("catppuccin").setup({
 })
 vim.cmd [[ colorscheme catppuccin ]]
 
+require('indent_blankline').setup {
+  char = '┊',
+  show_trailing_blankline_indent = false,
+}
+
 require('lualine').setup {
   options = {
     icons_enabled = false,
@@ -177,7 +183,6 @@ local servers = {
    sumneko_lua = {},
    bashls = {},
    arduino_language_server = {},
-   asm_lsp = {},
    cmake = {},
    cssls = {},
    html = {},
