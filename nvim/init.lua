@@ -174,6 +174,7 @@ mason_lspconfig.setup {
   end,
 }--]]
 
+-- For some reason, using lspconfig manually works way better
 require("lspconfig").pyright.setup{}
 require("lspconfig").clangd.setup{}
 
