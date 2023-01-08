@@ -32,6 +32,8 @@ require('packer').startup(function()
 		requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
 	  }
 
+	use 'nvim-lualine/lualine.nvim'
+
 	use 'preservim/nerdtree'
 
 	use 'tpope/vim-fugitive' -- git
@@ -105,6 +107,15 @@ require("catppuccin").setup({
 	}
 })
 vim.cmd [[ colorscheme catppuccin ]]
+
+require('lualine').setup {
+  options = {
+    icons_enabled = false,
+    theme = 'catppuccin',
+    component_separators = '|',
+    section_separators = '',
+  },
+}
 
 require('gitsigns').setup{
   on_attach = function(bufnr)
