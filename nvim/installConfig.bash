@@ -14,13 +14,6 @@ then
 fi
 
 
-if ! [[ -d  ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]
-then
-	git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-fi
-
-nvim +PackerCompile +PackerInstall
-
 if ! which npm > /dev/null
 then
 	echo "Error: npm not found."
