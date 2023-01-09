@@ -110,8 +110,10 @@ require("catppuccin").setup({
 vim.cmd [[ colorscheme catppuccin ]]
 
 require('indent_blankline').setup {
-  char = '┊',
-  show_trailing_blankline_indent = false,
+	char = '┊',
+	show_trailing_blankline_indent = false,
+	filetype_exclude = {}, -- Allows blank files to work too
+	filetype = {},
 }
 
 require('lualine').setup {
@@ -180,7 +182,12 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local servers = {
    clangd = {},
    pyright = {},
-   sumneko_lua = {},
+   sumneko_lua = {
+		Lua = {
+			workspace = { checkThirdParty = false}, -- Remove annoying prompt for neodev
+			telemetry = { enable = false }
+		}
+   },
    bashls = {},
    arduino_language_server = {},
    cmake = {},
@@ -206,7 +213,9 @@ mason_lspconfig.setup {
 -- Auto setup all LSP's whenever Mason installs a package
 mason_lspconfig.setup_handlers {
   function(server_name)
-    require('lspconfig')[server_name].setup{}
+    require('lspconfig')[server_name].setup{
+		settings = servers[server_name]
+	}
   end,
 }
 
