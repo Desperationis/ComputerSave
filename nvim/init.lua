@@ -46,6 +46,7 @@ require('packer').startup(function()
 
 	use 'nvim-lualine/lualine.nvim'
 	use 'lukas-reineke/indent-blankline.nvim'
+	use 'numToStr/Comment.nvim'
 
 	use 'preservim/nerdtree'
 
@@ -120,6 +121,8 @@ require("catppuccin").setup({
 	}
 })
 vim.cmd [[ colorscheme catppuccin ]]
+
+require('Comment').setup()
 
 require('indent_blankline').setup {
 	char = '┊',
