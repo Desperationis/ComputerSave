@@ -37,8 +37,3 @@ then
 		echo "Error: Compatible version of clang not found."
 	fi
 fi
-
-nvim +"LspInstall clangd"
-
-sudo apt-get install python3-venv
-nvim +COQdeps
