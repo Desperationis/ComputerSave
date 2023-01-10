@@ -248,7 +248,7 @@ require('fidget').setup({
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'vim' },
+  ensure_installed = { 'c', 'cpp', 'lua', 'python', 'help', 'vim', 'arduino', 'bash', 'cmake', 'comment', 'css', 'gitcommit', 'git_rebase', 'html', 'json', 'latex', 'markdown', 'dockerfile', 'java'},
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
