@@ -99,6 +99,8 @@ vim.o.completeopt = 'menuone,noselect'
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Terminal mode remap                                                        
+vim.cmd [[ :tnoremap <Esc> <C-\><C-n> ]]
 
 
 -- [[ Highlight on yank ]]
@@ -319,7 +321,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'lua', 'python', 'help', 'vim', 'arduino', 'bash', 'cmake', 'comment', 'css', 'gitcommit', 'git_rebase', 'html', 'json', 'latex', 'markdown', 'dockerfile', 'java'},
+  ensure_installed = { 'c', 'cpp', 'lua', 'python', 'help', 'vim', 'arduino', 'bash', 'cmake', 'comment', 'css', 'gitcommit', 'git_rebase', 'html', 'json', 'latex', 'markdown', 'dockerfile', 'java', 'fish'},
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
