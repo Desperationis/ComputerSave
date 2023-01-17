@@ -1,1 +1,0 @@
-sudo btrfs filesystem usage /
