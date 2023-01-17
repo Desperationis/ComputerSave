@@ -1,0 +1,20 @@
+- name: "Install personal pip3 packages"
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "Install Packages"
+      register: pipout
+      pip:
+        state: latest
+        name: 
+          - pygame
+          - pyautogui
+          - PythonFileLibrary
+          - psscraper
+          - bs4
+          - requests
+          - PyYAML
+          - selenium
+
+    - debug: var=pipout.stdout
