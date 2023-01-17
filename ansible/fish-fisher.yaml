@@ -1,0 +1,27 @@
+- name: "Install latest fish and fisher plugin"
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "Add fish apt repository"
+      register: fishaptout
+      apt_repository:
+        repo: ppa:fish-shell/release-3
+    - debug: var=fishaptout
+
+    - name: "Install Fish"
+      register: aptout
+      apt:
+        update-cache: true
+        state: latest
+        name: 
+          - fish
+    - debug: var=aptout
+
+    - name: "Install fisher and plugins"
+      register: fisherout
+      shell:
+        cmd: fish -c "curl -sL https://git.io/fisher | source; fisher install jorgebucaran/fisher; fisher install edc/bass"
+    - debug: var=fisherout
+
+
