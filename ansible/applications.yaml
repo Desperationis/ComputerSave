@@ -1,0 +1,23 @@
+- name: "Applications for Debian"
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "Install Packages"
+      register: aptout
+      apt:
+        state: latest
+        name: 
+          - redshift
+          - okular
+          - keepass2
+          - obs-studio
+          - xclip
+          - gparted
+          - vlc
+          - clementine
+          - discord
+          - peek
+          - eog
+
+    - debug: var=aptout
