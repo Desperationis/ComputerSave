@@ -237,7 +237,8 @@ local servers = {
    jdtls = {},
    jsonls = {},
    quick_lint_js = {},
-   marksman = {}
+   marksman = {},
+   ansiblels= {}
 }
 
 require("mason").setup()
