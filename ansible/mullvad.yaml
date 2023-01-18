@@ -1,0 +1,11 @@
+- name: "Install mullvad for Debian"
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "Install Packages"
+      register: aptout
+      apt:
+        deb: https://mullvad.net/download/app/deb/latest/
+
+    - debug: var=aptout
