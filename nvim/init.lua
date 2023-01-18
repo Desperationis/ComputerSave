@@ -84,7 +84,7 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.linebreak = true
 vim.opt.backspace = "indent,eol,start"
-vim.opt.guicursor="n-v-c-sm:ver25,i-ci-ve:ver25,r-cr-o:hor20"
+vim.opt.guicursor="n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 
 vim.o.mouse = ""
 vim.wo.number = true
