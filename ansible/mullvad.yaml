@@ -1,4 +1,4 @@
-- name: "Install mullvad for Debian"
+- name: "Install latest mullvad for Debian"
   hosts: localhost
   connection: local
   become: true

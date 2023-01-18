@@ -1,4 +1,4 @@
-- name: "Install latest Neovim for Debian"
+- name: "Install latest discord for Debian"
   hosts: localhost
   connection: local
   become: true
@@ -6,6 +6,6 @@
     - name: "Install Packages"
       register: aptout
       apt:
-        deb: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+        deb: https://discord.com/api/download?platform=linux&format=deb
 
     - debug: var=aptout
