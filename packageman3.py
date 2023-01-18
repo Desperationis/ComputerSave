@@ -21,6 +21,23 @@ class UserChoice:
     def isQuit(self) -> bool:
         return self._userInput.lower() == "q"
 
+class Playbook:
+    def __init__(self, path : str, root : bool):
+        self.set_root(root)
+        self.set_path(path)
+
+    def set_root(self, root : bool):
+        self.root = root
+
+    def set_path(self, path : str):
+        self.path = os.path.abspath(path)
+
+    def is_root(self) -> bool:
+        return self.root
+
+    def get_path(self) -> str:
+        return self.path
+
 
 def PrintOptions(options, selected):
     """
@@ -62,12 +79,20 @@ def GetUserInput(numOptions : int) -> UserChoice:
 
 
 
-# Load up playbooks as "filename" without extension
-playbooks = {}
+# Scripts in ansible are executed in root
+playbooks: dict[str, Playbook] = {}
 for file in os.listdir("ansible/"):
     name = file.split('.')[0]
-    playbooks[name] = os.path.join("ansible/", file)
-    playbooks[name] = os.path.abspath(playbooks[name])
+    abspath = os.path.join("ansible/", file)
+    playbook = Playbook(path=abspath, root=True)
+    playbooks[name] = playbook
+
+if os.path.exists("ansible/no_root/"):
+    for file in os.listdir("ansible/no_root/"):
+        name = file.split('.')[0]
+        abspath = os.path.join("ansible/no_root/", file)
+        playbook = Playbook(path=abspath, root=False)
+        playbooks[name] = playbook
 
 options = list(playbooks.keys())
 selected = []
@@ -94,8 +119,15 @@ while True:
 
     if userInput.isAccept():
         for option in selected:
-            fullPath = playbooks[option]
-            command = "sudo ansible-playbook {0}"
+            fullPath = playbooks[option].get_path()
+            root = playbooks[option].is_root()
+            command = ""
+
+            if root:
+                command += "sudo "
+
+            command += "ansible-playbook {0}"
+
 
             # Use os.system instead of subprocess so that stdout is outputted as
             # the process is running and stdin is connected.

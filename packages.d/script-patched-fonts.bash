@@ -6,7 +6,7 @@ FONTS=(
 	https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip
 )
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-FONT_PATH=$SCRIPT_DIR/../patched-fonts
+FONT_PATH=$SCRIPT_DIR/patched-fonts
 
 # Install
 if [ $REMOVE -eq 0 ] 
