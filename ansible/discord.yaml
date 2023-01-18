@@ -6,6 +6,7 @@
     - name: "Install Packages"
       register: aptout
       apt:
+        state: latest
         deb: https://discord.com/api/download?platform=linux&format=deb
 
     - debug: var=aptout

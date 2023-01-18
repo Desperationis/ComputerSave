@@ -6,6 +6,7 @@
     - name: "Install Packages"
       register: aptout
       apt:
+        state: latest
         deb: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
 
     - debug: var=aptout
