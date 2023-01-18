@@ -1,0 +1,11 @@
+- name: "Install Neovim for Debian"
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "Install Packages"
+      register: aptout
+      apt:
+        deb: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+
+    - debug: var=aptout
