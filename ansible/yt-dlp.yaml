@@ -1,0 +1,13 @@
+- name: "Install yt-dlp"
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "Install Packages"
+      register: ytout
+      pip:
+        state: latest
+        name: 
+          - yt-dlp
+
+    - debug: var=ytout.stdout
