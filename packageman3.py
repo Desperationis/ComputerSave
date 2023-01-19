@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 class UserChoice:
     def __init__(self, userInput : str):
@@ -121,17 +122,13 @@ while True:
         for option in selected:
             fullPath = playbooks[option].get_path()
             root = playbooks[option].is_root()
-            command = ""
+            command = []
 
             if root:
-                command += "sudo "
+                command.append("sudo")
 
-            command += "ansible-playbook {0}"
-
-
-            # Use os.system instead of subprocess so that stdout is outputted as
-            # the process is running and stdin is connected.
-            os.system(command.format(fullPath))
+            command.extend(["ansible-playbook", fullPath])
+            subprocess.run(command)
 
         break
 
