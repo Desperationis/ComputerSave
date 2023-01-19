@@ -6,7 +6,6 @@
     - name: "Install Packages"
       register: aptout
       apt:
-        state: latest
         deb: https://mullvad.net/download/app/deb/latest/
 
     - debug: var=aptout
