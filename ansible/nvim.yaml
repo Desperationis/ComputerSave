@@ -3,9 +3,18 @@
   connection: local
   become: true
   tasks:
-    - name: "Install Packages"
+    - name: "Download nvim AppImage"
       register: aptout
-      apt:
-        deb: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
-
+      ansible.builtin.get_url:
+        url: https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+        dest: /usr/bin/nvim
+        mode: '0775'
+      
     - debug: var=aptout
+
+    #- name: "Install Packages"
+    #  register: aptout
+    #  apt:
+    #    deb: https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+
+    #- debug: var=aptout
