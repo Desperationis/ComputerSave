@@ -11,6 +11,5 @@
           - bs4
           - requests
           - PyYAML
-          - python3-venv
 
     - debug: var=pipout.stdout

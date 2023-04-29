@@ -13,6 +13,7 @@
           - gcc
           - python3
           - python3-pip
+          - python3-venv
           - tree
           - git
           - g++
@@ -20,8 +21,8 @@
           - gzip
           - zstd 
           - net-tools
-          - npm
           - gdb
+          - npm
           - nodejs
           - dos2unix
           - pkg-config
