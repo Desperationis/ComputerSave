@@ -8,13 +8,9 @@
       pip:
         state: latest
         name: 
-          - pygame
-          - pyautogui
-          - PythonFileLibrary
-          - psscraper
           - bs4
           - requests
           - PyYAML
-          - selenium
+          - python3-venv
 
     - debug: var=pipout.stdout
