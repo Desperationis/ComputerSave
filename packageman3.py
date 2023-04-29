@@ -2,6 +2,10 @@ import os
 import subprocess
 
 class UserChoice:
+    """
+        Processes what characters in input correspond to which action.
+    """
+
     def __init__(self, userInput : str):
         self._userInput = userInput
 
@@ -22,7 +26,11 @@ class UserChoice:
     def isQuit(self) -> bool:
         return self._userInput.lower() == "q"
 
-class Playbook:
+class AnsiblePlaybook:
+    """
+        Run an ansible playbook with or without root.
+    """
+
     def __init__(self, path : str, root : bool):
         self.set_root(root)
         self.set_path(path)
@@ -38,6 +46,27 @@ class Playbook:
 
     def get_path(self) -> str:
         return self.path
+
+    def run(self):
+        command = []
+
+        if self.is_root():
+            command.append("sudo")
+
+        command.extend(["ansible-playbook", self.get_path()])
+        subprocess.run(command)
+
+class TermColors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 
 
 def PrintOptions(options, selected):
@@ -61,7 +90,7 @@ def GetUserInput(numOptions : int) -> UserChoice:
         Gets a valid UserChoice from the user.
     """
     while True:
-        rawUserInput = input("Pack # [q/c]: ")
+        rawUserInput = input("Playbook Number [q/c]: ")
         userChoice = UserChoice(rawUserInput)
 
         if userChoice.isAccept() or userChoice.isQuit():
@@ -78,22 +107,46 @@ def GetUserInput(numOptions : int) -> UserChoice:
 
         print("That is not a number.")
 
+def IsRoot() -> bool:
+    return os.geteuid() == 0
 
 
-# Scripts in ansible are executed in root
-playbooks: dict[str, Playbook] = {}
-for file in os.listdir("ansible/"):
-    name = file.split('.')[0]
-    abspath = os.path.join("ansible/", file)
-    playbook = Playbook(path=abspath, root=True)
-    playbooks[name] = playbook
 
+############## MAIN PROGRAM ####################
+
+
+
+
+if not IsRoot():
+    print(f"{TermColors.OKCYAN}You are not root, only non-root playbooks will be listed.")
+else:
+    print(f"{TermColors.WARNING}You are root, all playbooks are listed.")
+
+print("Your HOME is " + os.environ.get("HOME", "N/A") + TermColors.ENDC + "\n")
+
+
+
+playbooks: dict[str, AnsiblePlaybook] = {}
+
+
+# Scripts in 1st level run as root
+if IsRoot():
+    for file in os.listdir("ansible/"):
+        relpath = os.path.join("ansible", file)
+        if os.path.isfile(relpath):
+            name = file.split('.')[0]
+            playbook = AnsiblePlaybook(path=relpath, root=True)
+            playbooks[name] = playbook
+
+# Scripts in 2nd level run without root
 if os.path.exists("ansible/no_root/"):
     for file in os.listdir("ansible/no_root/"):
-        name = file.split('.')[0]
-        abspath = os.path.join("ansible/no_root/", file)
-        playbook = Playbook(path=abspath, root=False)
-        playbooks[name] = playbook
+        relpath = os.path.join("ansible/no_root/", file)
+
+        if os.path.isfile(relpath):
+            name = file.split('.')[0]
+            playbook = AnsiblePlaybook(path=relpath, root=False)
+            playbooks[name] = playbook
 
 options = list(playbooks.keys())
 selected = []
@@ -120,15 +173,7 @@ while True:
 
     if userInput.isAccept():
         for option in selected:
-            fullPath = playbooks[option].get_path()
-            root = playbooks[option].is_root()
-            command = []
-
-            if root:
-                command.append("sudo")
-
-            command.extend(["ansible-playbook", fullPath])
-            subprocess.run(command)
+            playbooks[option].run()
 
         break
 
