@@ -1,0 +1,13 @@
+- name: "Install rclone"
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "Install Packages"
+      register: aptout
+      apt:
+        state: latest
+        name: 
+          - rclone
+
+    - debug: var=aptout
