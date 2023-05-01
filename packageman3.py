@@ -62,26 +62,27 @@ class TermColors:
     OKCYAN = '\033[96m'
     OKGREEN = '\033[92m'
     WARNING = '\033[93m'
-    FAIL = '\033[91m'
+    RED = '\033[91m'
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
 
 
-def PrintOptions(options, selected):
+def PrintOptions(options, selected, selectedColor):
     """
         Prints out the options in "1 Option" format. If any of the elements in
         options are found in selected, it will show as "(1) Option".
 
         options: List of strings
         selected: List of strings
+        selectedColor: ANSI color code of selected
     """
 
     print("Please select a playbook by number. End or start with ! to unselect.") 
     for i, option in enumerate(options):
         if option in selected:
-            print("(%s) %s" % (i+1, option))
+            print(f"{selectedColor}(%s) %s{TermColors.ENDC}" % (i+1, option))
         else:
             print("%s %s" % (i+1, option))
 
@@ -115,12 +116,14 @@ def IsRoot() -> bool:
 ############## MAIN PROGRAM ####################
 
 
-
+# Intro text and selections
+STYLING_COLOR = TermColors.OKCYAN
 
 if not IsRoot():
-    print(f"{TermColors.OKCYAN}You are not root, only non-root playbooks will be listed.")
+    print(f"{STYLING_COLOR}You are not root, only non-root playbooks will be listed.")
 else:
-    print(f"{TermColors.WARNING}You are root, all playbooks are listed.")
+    STYLING_COLOR = TermColors.RED
+    print(f"{STYLING_COLOR}You are root, all playbooks are listed.")
 
 print("Your HOME is " + os.environ.get("HOME", "N/A") + TermColors.ENDC + "\n")
 
@@ -152,7 +155,7 @@ options = list(playbooks.keys())
 selected = []
 
 while True:
-    PrintOptions(options, selected)
+    PrintOptions(options, selected, STYLING_COLOR)
     userInput = GetUserInput(len(options))
 
     if userInput.isQuit():
