@@ -1,0 +1,13 @@
+- name: "Install Keepass"
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "Installing Package"
+      register: aptout
+      apt:
+        state: latest
+        name: 
+          - keepassxc
+
+    - debug: var=aptout
