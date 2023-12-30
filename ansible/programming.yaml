@@ -33,5 +33,6 @@
           - gnupg
           - lsb-release
           - ffmpeg
+          - tmux
 
     - debug: var=aptout
