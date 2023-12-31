@@ -8,8 +8,6 @@
       pip:
         state: latest
         name: 
-          - bs4
-          - requests
-          - PyYAML
+          - yt-dlp
 
     - debug: var=pipout.stdout

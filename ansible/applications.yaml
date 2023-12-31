@@ -3,19 +3,31 @@
   connection: local
   become: true
   tasks:
-    - name: "Install Packages"
+    - name: "Install Apt Packages"
       register: aptout
       apt:
         state: latest
         name: 
           - redshift
           - okular
-          - obs-studio
-          - xclip
           - gparted
           - vlc
-          - clementine
           - peek
           - eog
+          - keepassxc
 
     - debug: var=aptout
+
+    - name: "Install Discord from Website"
+      register: aptout2
+      apt:
+        deb: https://discord.com/api/download?platform=linux&format=deb
+
+    - debug: var=aptout2
+
+    - name: "Install Mullvad"
+      register: aptout3
+      apt:
+        deb: https://mullvad.net/download/app/deb/latest/
+
+    - debug: var=aptout3
