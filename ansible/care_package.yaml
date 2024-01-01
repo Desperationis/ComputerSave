@@ -37,6 +37,7 @@
           - lsb-release
           - tmux
           - rclone
+          - rsync
     - debug: var=aptout
 
     - name: "Install Bat"
