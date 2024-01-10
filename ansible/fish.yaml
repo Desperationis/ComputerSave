@@ -1,0 +1,40 @@
+- name: "Install latest fish shell"
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "Add fish apt repository"
+      register: fishaptout
+      apt_repository:
+        repo: ppa:fish-shell/release-3
+    - debug: var=fishaptout
+
+    - name: "Install Fish"
+      register: aptout
+      apt:
+        update-cache: true
+        state: latest
+        name: 
+          - fish
+    - debug: var=aptout
+
+    - name: "install zoxide"
+      register: aptout2
+      command:
+        cmd: bash -c "curl -ss https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash"
+    - debug: var=aptout2
+
+    - name: "Download fzf"
+      register: aptout3
+      ansible.builtin.get_url:
+        url: https://github.com/junegunn/fzf/releases/download/0.45.0/fzf-0.45.0-linux_amd64.tar.gz
+        dest: /tmp/fzf.tar.gz
+    - debug: var=aptout3
+
+    - name: "Unpack fzf to /usr/local/bin/"
+      register: aptout3
+      ansible.builtin.unarchive:
+        src: /tmp/fzf.tar.gz
+        dest: /usr/local/bin
+    - debug: var=aptout3
+
