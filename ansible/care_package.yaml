@@ -48,14 +48,23 @@
     - debug: var=aptout2
 
     - name: "Download nvim AppImage"
-      register: aptout
+      register: aptout3
       ansible.builtin.get_url:
         url: https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
         dest: /usr/bin/nvim
         mode: '0775'
       
-    - debug: var=aptout
+    - debug: var=aptout3
 
+    - name: "Download Docker Engine Installation Script"
+      register: aptout4
+      ansible.builtin.get_url:
+        url: https://get.docker.com
+        dest: /tmp/getdocker.sh
+    - debug: var=aptout4
 
-
-
+    - name: "Install Docker"
+      register: aptout5
+      command:
+        cmd: sh /tmp/getdocker.sh
+    - debug: var=aptout5
