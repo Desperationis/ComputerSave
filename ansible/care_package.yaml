@@ -68,3 +68,14 @@
       command:
         cmd: sh /tmp/getdocker.sh
     - debug: var=aptout5
+      
+    - name: Add Docker Group
+      group:
+        name: docker
+        state: present
+
+    - name: Add user to the group
+      user:
+        name: "{{ ansible_env.SUDO_USER | default(ansible_env.USER) }}"
+        groups: docker
+        append: yes
