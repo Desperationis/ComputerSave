@@ -83,3 +83,11 @@
     - name: Make shorthand for localhost
       command:
         cmd: bash -c "grep -qxF '127.0.0.1   lh' /etc/hosts || echo '127.0.0.1   lh' >> /etc/hosts"
+
+
+    - name: "Install Localshare"
+      register: aptout6
+      apt:
+        deb: https://github.com/localsend/localsend/releases/download/v1.13.1/LocalSend-1.13.1-linux-x86-64.deb
+
+    - debug: var=aptout6
