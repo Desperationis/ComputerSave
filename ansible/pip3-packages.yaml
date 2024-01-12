@@ -9,5 +9,6 @@
         state: latest
         name: 
           - yt-dlp
+          - black
 
     - debug: var=pipout.stdout
