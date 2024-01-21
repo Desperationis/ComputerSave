@@ -10,5 +10,7 @@
         name: 
           - yt-dlp
           - black
+          - trash-cli
+
 
     - debug: var=pipout.stdout
