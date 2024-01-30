@@ -11,6 +11,7 @@
           - yt-dlp
           - black
           - trash-cli
+          - pypeek
 
 
     - debug: var=pipout.stdout
